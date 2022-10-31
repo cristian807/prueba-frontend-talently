@@ -70,6 +70,7 @@ export default{
             LoginService.register(this.form)
             .then(response=>{
                 this.resetForm()
+                this.$toastr.s("Usuario agregado exitosamente.");
             })
             .catch(error=>{
                 store.dispatch('setResponseHttp',error)

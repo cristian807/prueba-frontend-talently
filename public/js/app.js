@@ -1991,6 +1991,19 @@ __webpack_require__.r(__webpack_exports__);
         return {};
       }
     }
+  },
+  data: function data() {
+    return {
+      current_date: new Date().toLocaleDateString(),
+      dataCard: this.task.date_delivery
+    };
+  },
+  computed: {
+    verifiteCurrenDate: function verifiteCurrenDate(date) {
+      var dateCard = new Date(this.dateCard);
+      var current_date = new Date(this.current_date);
+      return dateCard < current_date;
+    }
   }
 });
 
@@ -2129,6 +2142,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       _Services_LoginServices__WEBPACK_IMPORTED_MODULE_4__["LoginService"].register(this.form).then(function (response) {
         _this.resetForm();
+        _this.$toastr.s("Usuario agregado exitosamente.");
       })["catch"](function (error) {
         _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('setResponseHttp', error);
       });
@@ -2421,7 +2435,10 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "flex justify-between"
   }, [_c("p", {
-    staticClass: "text-gray-700 font-semibold font-sans tracking-wide text-sm"
+    staticClass: "text-gray-700 font-semibold font-sans tracking-wide text-sm",
+    "class": {
+      "text-red-400": _vm.verifiteCurrenDate
+    }
   }, [_vm._v(_vm._s(_vm.task.name))]), _vm._v(" "), _c("img", {
     staticClass: "w-6 h-6 rounded-full ml-3",
     attrs: {
